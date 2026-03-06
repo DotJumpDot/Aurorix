@@ -14,6 +14,8 @@
 - **Real-time Analysis**: Instant feedback as you type
 - **Export Options**: Save results as JSON or CSV
 - **Modern UI**: Clean, responsive interface built with Next.js
+- **User Authentication**: JWT tokens, API keys, OAuth support
+- **Supabase Database**: Persistent storage for analysis history
 
 ## Project Structure
 
@@ -24,7 +26,11 @@ Aurorix/
 ├── Aurorix_Backend/     # ElysiaJS API server
 ├── Aurorix_Frontend/    # Next.js web application
 ├── Docs/                # Documentation
-└── [Config Files]       # Root-level configuration
+├── AGENTS.md           # AI agent instructions
+├── README.md           # This file
+├── CHANGELOG.md        # Version history
+├── LICENSE             # MIT License
+└── .env.example        # Environment template
 ```
 
 ## Quick Start
@@ -32,33 +38,88 @@ Aurorix/
 ### Prerequisites
 
 - [Bun](https://bun.sh/) installed on your system
+- [Supabase](https://supabase.com/) account
 
 ### Backend Setup
 
 ```bash
 cd Aurorix_Backend
+
+# Install dependencies
 bun install
+
+# Copy environment template
+cp ../.env.example .env
+
+# Edit .env with your Supabase credentials
+# Required: SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY
+# Required: JWT_SECRET, PASSWORD_SALT, API_KEY
+
+# Start development server
 bun run dev
 ```
 
-The backend will start on `http://localhost:3001`
+The backend will start on `http://localhost:4200`
 
 ### Frontend Setup
 
 ```bash
 cd Aurorix_Frontend
+
+# Create .env.local file
+cat > .env.local << EOF
+NEXT_PUBLIC_API_BASE_URL=http://localhost:4200
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+EOF
+
+# Install dependencies
 bun install
+
+# Start development server
 bun run dev
 ```
 
-The frontend will start on `http://localhost:3000`
+The frontend will start on `http://localhost:4100`
+
+## Database Setup
+
+1. Create a Supabase project
+2. Run the SQL schema in `Docs/database-schema.sql` via the Supabase SQL Editor
+3. Configure your `.env` with Supabase credentials
 
 ## API Endpoints
 
-| Endpoint       | Method | Description                                                           |
-| -------------- | ------ | --------------------------------------------------------------------- |
-| `/api/analyze` | POST   | Analyze text for character frequency, word density, and reading level |
-| `/api/health`  | GET    | Health check endpoint                                                 |
+### Authentication
+
+| Endpoint                   | Method | Description                  |
+| -------------------------- | ------ | ---------------------------- |
+| `/auth/login`              | POST   | Login with username/password |
+| `/auth/register`           | POST   | Register new user            |
+| `/auth/me`                 | GET    | Get current user             |
+| `/auth/regenerate-api-key` | POST   | Regenerate API key           |
+
+### Users
+
+| Endpoint     | Method | Description    |
+| ------------ | ------ | -------------- |
+| `/users`     | GET    | List all users |
+| `/users/:id` | GET    | Get user by ID |
+| `/users/:id` | PUT    | Update user    |
+| `/users/:id` | DELETE | Delete user    |
+
+### Analysis
+
+| Endpoint              | Method | Description          |
+| --------------------- | ------ | -------------------- |
+| `/analysis/analyze`   | POST   | Analyze text         |
+| `/analysis/history`   | GET    | Get analysis history |
+| `/analysis/:id`       | GET    | Get single analysis  |
+| `/analysis/:id`       | DELETE | Delete analysis      |
+| `/analysis/save`      | POST   | Save analysis result |
+| `/analysis/saved`     | GET    | Get saved results    |
+| `/analysis/saved/:id` | PUT    | Update saved result  |
+| `/analysis/saved/:id` | DELETE | Delete saved result  |
 
 ## Analysis Features
 
@@ -93,6 +154,7 @@ The frontend will start on `http://localhost:3000`
 - **ElysiaJS** - Fast, type-safe web framework
 - **TypeScript** - Type-safe development
 - **Bun** - Fast JavaScript runtime
+- **Supabase** - Database and authentication
 
 ### Frontend
 
@@ -101,23 +163,20 @@ The frontend will start on `http://localhost:3000`
 - **TypeScript** - Type-safe development
 - **Tailwind CSS** - Utility-first CSS
 
-## Scripts
+## Environment Variables
 
-### Backend
+### Backend (.env)
 
-```bash
-bun run dev      # Start development server
-bun run build    # Build for production
-bun run start    # Start production server
 ```
-
-### Frontend
-
-```bash
-bun run dev      # Start development server
-bun run build    # Build for production
-bun run start    # Start production server
-bun run lint     # Run ESLint
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+PORT=4200
+NODE_ENV=development
+API_KEY=your_api_key
+JWT_SECRET=your_jwt_secret
+PASSWORD_SALT=your_password_salt
+FRONTEND_BASE_URL=http://localhost:4100
 ```
 
 ## Contributing
