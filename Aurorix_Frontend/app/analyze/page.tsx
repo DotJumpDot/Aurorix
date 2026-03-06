@@ -184,7 +184,7 @@ export default function AnalyzePage() {
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={t("analysis.input")}
-                  rows={isSlid ? 15 : 15}
+                  rows={isSlid ? 20 : 15}
                   className="mb-4"
                   disabled={isAnalyzing}
                 />
@@ -310,7 +310,7 @@ export default function AnalyzePage() {
                   {/* Character Frequency */}
                   <div className="mb-6">
                     <Title level={4}>{t("analysis.characterFrequency")}</Title>
-                    <div className="max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="max-h-37 overflow-y-auto pr-2 custom-scrollbar">
                       {Object.entries(analysisResult.character_analysis?.character_frequency || {})
                         .sort(([, a], [, b]) => b - a)
                         .slice(0, 20)
@@ -335,7 +335,7 @@ export default function AnalyzePage() {
                   {/* Word Density */}
                   <div>
                     <Title level={4}>{t("analysis.wordDensity")}</Title>
-                    <div className="max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="max-h-28 overflow-y-auto pr-2 custom-scrollbar">
                       {Object.entries(analysisResult.word_analysis?.word_frequency || {})
                         .sort(([, a], [, b]) => b - a)
                         .slice(0, 20)
