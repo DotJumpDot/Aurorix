@@ -170,7 +170,7 @@ export default function AnalyzePage() {
             {/* Input Section - Slides to left when analyzed */}
             <div
               className={`transition-all duration-500 ease-in-out ${
-                isSlid ? "lg:w-1/3" : "w-full"
+                isSlid ? "lg:w-1/3 min-w-[300px]" : "w-full"
               }`}
             >
               <Card className="h-full">
@@ -209,8 +209,9 @@ export default function AnalyzePage() {
             {/* Results Section - Slides in from right */}
             <div
               className={`transition-all duration-500 ease-in-out ${
-                isSlid ? "lg:w-2/3 opacity-100" : "lg:w-0 opacity-0 overflow-hidden"
+                isSlid ? "w-full lg:w-[66.666667%] opacity-100" : "lg:w-0 opacity-0 overflow-hidden"
               }`}
+              style={{ minWidth: isSlid ? "400px" : 0 }}
             >
               {showResults && analysisResult && (
                 <Card className="h-full overflow-auto">
