@@ -14,15 +14,15 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: join(__dirname, "../../.env") });
 
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
+if (!supabaseUrl || !supabaseServiceKey) {
   console.warn("⚠️  Supabase credentials not found in environment variables");
 }
 
 export const supabase = createClient(
   supabaseUrl || "http://localhost:54321",
-  supabaseAnonKey || "mock-key"
+  supabaseServiceKey || "mock-key"
 );
 
 // Helper to test connection

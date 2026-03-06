@@ -72,6 +72,7 @@ When working on this project:
 2. **Frontend Changes**: Modify files in `Aurorix_Frontend/`
 3. **Documentation**: Update root-level markdown files as needed
 4. **API Contracts**: Ensure frontend and backend API contracts remain in sync
+5. **No Autonomous Commands**: Do not run development commands (e.g., `bun run dev`, `bun run build`, `npm run dev`, `npm run build`, etc.) on your own. Only execute such commands when explicitly requested by the user.
 
 ## Key Features
 

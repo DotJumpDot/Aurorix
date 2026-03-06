@@ -1,0 +1,104 @@
+{
+  "app": {
+    "name": "Aurorix",
+    "description": "Character Frequency Analyzer - Analyze text for character count, word density, and reading level"
+  },
+  "nav": {
+    "home": "Home",
+    "analyze": "Analyze",
+    "history": "History",
+    "settings": "Settings",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register"
+  },
+  "landing": {
+    "title": "Aurorix",
+    "subtitle": "Character Frequency Analyzer",
+    "description": "Analyze text for character count, word density, and reading level. Get detailed insights into your text with our advanced analysis tools.",
+    "getStarted": "Get Started",
+    "features": {
+      "characterCount": "Character Count",
+      "characterCountDesc": "Count characters, letters, and special characters in your text",
+      "wordDensity": "Word Density",
+      "wordDensityDesc": "Analyze word frequency and density distribution",
+      "readingLevel": "Reading Level",
+      "readingLevelDesc": "Calculate readability scores using multiple algorithms"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "username": "Username",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loginSuccess": "Login successful!",
+    "registerSuccess": "Registration successful!",
+    "logoutSuccess": "Logged out successfully",
+    "loginError": "Login failed. Please check your credentials.",
+    "registerError": "Registration failed. Please try again."
+  },
+  "analysis": {
+    "title": "Text Analysis",
+    "input": "Enter your text here...",
+    "analyze": "Analyze",
+    "clear": "Clear",
+    "analyzing": "Analyzing...",
+    "results": "Analysis Results",
+    "noResults": "No analysis results yet",
+    "characterCount": "Characters",
+    "wordCount": "Words",
+    "sentenceCount": "Sentences",
+    "paragraphCount": "Paragraphs",
+    "characterFrequency": "Character Frequency",
+    "wordDensity": "Word Density",
+    "readingLevel": "Reading Level",
+    "fleschKincaid": "Flesch-Kincaid",
+    "smog": "SMOG Index",
+    "colemanLiau": "Coleman-Liau",
+    "ari": "Automated Readability",
+    "average": "Average",
+    "veryEasy": "Very Easy",
+    "easy": "Easy",
+    "fairlyEasy": "Fairly Easy",
+    "standard": "Standard",
+    "fairly Difficult": "Fairly Difficult",
+    "difficult": "Difficult",
+    "veryDifficult": "Very Difficult"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "language": "Language",
+    "languageEn": "English",
+    "languageTh": "ไทย"
+  },
+  "idle": {
+    "title": "Session Timeout",
+    "message": "You have been idle for a while. Do you want to stay logged in?",
+    "stayLoggedIn": "Stay Logged In",
+    "logout": "Logout",
+    "autoLogout": "You will be logged out in {{seconds}} seconds"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit"
+  }
+}

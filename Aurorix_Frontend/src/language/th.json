@@ -1,0 +1,104 @@
+{
+  "app": {
+    "name": "Aurorix",
+    "description": "ตัววิเคราะห์ความถี่ของตัวอักษร - วิเคราะห์ข้อความสำหรับจำนวนตัวอักษร ความหนาแน่นของคำ และระดับการอ่าน"
+  },
+  "nav": {
+    "home": "หน้าหลัก",
+    "analyze": "วิเคราะห์",
+    "history": "ประวัติ",
+    "settings": "การตั้งค่า",
+    "logout": "ออกจากระบบ",
+    "login": "เข้าสู่ระบบ",
+    "register": "ลงทะเบียน"
+  },
+  "landing": {
+    "title": "Aurorix",
+    "subtitle": "ตัววิเคราะห์ความถี่ของตัวอักษร",
+    "description": "วิเคราะห์ข้อความสำหรับจำนวนตัวอักษร ความหนาแน่นของคำ และระดับการอ่าน รับข้อมูลเชิงลึกโดยละเอียดเกี่ยวกับข้อความของคุณด้วยเครื่องมือวิเคราะห์ขั้นสูงของเรา",
+    "getStarted": "เริ่มต้นใช้งาน",
+    "features": {
+      "characterCount": "จำนวนตัวอักษร",
+      "characterCountDesc": "นับตัวอักษร ตัวอักษร และอักขระพิเศษในข้อความของคุณ",
+      "wordDensity": "ความหนาแน่นของคำ",
+      "wordDensityDesc": "วิเคราะห์ความถี่ของคำและการกระจายความหนาแน่น",
+      "readingLevel": "ระดับการอ่าน",
+      "readingLevelDesc": "คำนวณคะแนนความสามารถในการอ่านโดยใช้หลายอัลกอริทึม"
+    }
+  },
+  "auth": {
+    "login": "เข้าสู่ระบบ",
+    "register": "ลงทะเบียน",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "confirmPassword": "ยืนยันรหัสผ่าน",
+    "username": "ชื่อผู้ใช้",
+    "forgotPassword": "ลืมรหัสผ่าน?",
+    "noAccount": "ยังไม่มีบัญชี?",
+    "hasAccount": "มีบัญชีอยู่แล้ว?",
+    "loginSuccess": "เข้าสู่ระบบสำเร็จ!",
+    "registerSuccess": "ลงทะเบียนสำเร็จ!",
+    "logoutSuccess": "ออกจากระบบสำเร็จ",
+    "loginError": "เข้าสู่ระบบล้มเหลว กรุณาตรวจสอบข้อมูลของคุณ",
+    "registerError": "การลงทะเบียนล้มเหลว กรุณาลองอีกครั้ง"
+  },
+  "analysis": {
+    "title": "การวิเคราะห์ข้อความ",
+    "input": "ใส่ข้อความของคุณที่นี่...",
+    "analyze": "วิเคราะห์",
+    "clear": "ล้าง",
+    "analyzing": "กำลังวิเคราะห์...",
+    "results": "ผลการวิเคราะห์",
+    "noResults": "ยังไม่มีผลการวิเคราะห์",
+    "characterCount": "ตัวอักษร",
+    "wordCount": "คำ",
+    "sentenceCount": "ประโยค",
+    "paragraphCount": "ย่อหน้า",
+    "characterFrequency": "ความถี่ของตัวอักษร",
+    "wordDensity": "ความหนาแน่นของคำ",
+    "readingLevel": "ระดับการอ่าน",
+    "fleschKincaid": "Flesch-Kincaid",
+    "smog": "ดัชนี SMOG",
+    "colemanLiau": "Coleman-Liau",
+    "ari": "ความสามารถในการอ่านอัตโนมัติ",
+    "average": "เฉลี่ย",
+    "veryEasy": "ง่ายมาก",
+    "easy": "ง่าย",
+    "fairlyEasy": "ค่อนข้างง่าย",
+    "standard": "มาตรฐาน",
+    "fairly Difficult": "ค่อนข้างยาก",
+    "difficult": "ยาก",
+    "veryDifficult": "ยากมาก"
+  },
+  "settings": {
+    "title": "การตั้งค่า",
+    "theme": "ธีม",
+    "themeLight": "สว่าง",
+    "themeDark": "มืด",
+    "themeSystem": "ระบบ",
+    "language": "ภาษา",
+    "languageEn": "English",
+    "languageTh": "ไทย"
+  },
+  "idle": {
+    "title": "หมดเวลาเซสชัน",
+    "message": "คุณไม่ได้ใช้งานมาสักพัก คุณต้องการที่จะเข้าสู่ระบบต่อไหม?",
+    "stayLoggedIn": "เข้าสู่ระบบต่อ",
+    "logout": "ออกจากระบบ",
+    "autoLogout": "คุณจะถูกออกจากระบบในอีก {{seconds}} วินาที"
+  },
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "ข้อผิดพลาด",
+    "success": "สำเร็จ",
+    "cancel": "ยกเลิก",
+    "confirm": "ยืนยัน",
+    "save": "บันทึก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "close": "ปิด",
+    "back": "กลับ",
+    "next": "ถัดไป",
+    "submit": "ส่ง"
+  }
+}

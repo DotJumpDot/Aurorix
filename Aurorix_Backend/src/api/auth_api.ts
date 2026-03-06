@@ -7,6 +7,10 @@ import { loginUser, registerUser, getCurrentUser } from "../service/auth_service
 import type { LoginRequest, RegisterRequest } from "../type";
 
 export const authApi = new Elysia({ prefix: "/auth" })
+  // Logout (just returns success, client clears token)
+  .post("/logout", async () => {
+    return { success: true, message: "Logged out successfully" };
+  })
   // Login
   .post(
     "/login",
