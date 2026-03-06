@@ -184,7 +184,7 @@ export default function AnalyzePage() {
                   onChange={(e) => setText(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={t("analysis.input")}
-                  rows={isSlid ? 8 : 15}
+                  rows={isSlid ? 15 : 15}
                   className="mb-4"
                   disabled={isAnalyzing}
                 />
@@ -221,25 +221,25 @@ export default function AnalyzePage() {
                     <Col xs={12} sm={6}>
                       <Statistic
                         title={t("analysis.characterCount")}
-                        value={analysisResult.character_count}
+                        value={analysisResult.character_analysis.total_characters}
                       />
                     </Col>
                     <Col xs={12} sm={6}>
                       <Statistic
                         title={t("analysis.wordCount")}
-                        value={analysisResult.word_count}
+                        value={analysisResult.word_analysis.total_words}
                       />
                     </Col>
                     <Col xs={12} sm={6}>
                       <Statistic
                         title={t("analysis.sentenceCount")}
-                        value={analysisResult.sentence_count}
+                        value={analysisResult ? getSentenceCount(analysisResult.text_content) : 0}
                       />
                     </Col>
                     <Col xs={12} sm={6}>
                       <Statistic
                         title={t("analysis.paragraphCount")}
-                        value={analysisResult.paragraph_count}
+                        value={analysisResult ? getParagraphCount(analysisResult.text_content) : 0}
                       />
                     </Col>
                   </Row>
@@ -254,11 +254,14 @@ export default function AnalyzePage() {
                         <Card size="small">
                           <Statistic
                             title={t("analysis.fleschKincaid")}
-                            value={analysisResult.reading_level.flesch_kincaid}
+                            value={analysisResult.reading_level.flesch_kincaid_grade ?? 0}
                             precision={2}
                           />
                           <Text type="secondary" className="text-xs">
-                            {getReadingLevelLabel(analysisResult.reading_level.flesch_kincaid, t)}
+                            {getReadingLevelLabel(
+                              analysisResult.reading_level.flesch_kincaid_grade ?? 0,
+                              t
+                            )}
                           </Text>
                         </Card>
                       </Col>
@@ -266,7 +269,7 @@ export default function AnalyzePage() {
                         <Card size="small">
                           <Statistic
                             title={t("analysis.smog")}
-                            value={analysisResult.reading_level.smog}
+                            value={analysisResult.reading_level.smog_index ?? 0}
                             precision={2}
                           />
                         </Card>
@@ -275,7 +278,7 @@ export default function AnalyzePage() {
                         <Card size="small">
                           <Statistic
                             title={t("analysis.colemanLiau")}
-                            value={analysisResult.reading_level.coleman_liau}
+                            value={analysisResult.reading_level.coleman_liau_index ?? 0}
                             precision={2}
                           />
                         </Card>
@@ -284,7 +287,7 @@ export default function AnalyzePage() {
                         <Card size="small">
                           <Statistic
                             title={t("analysis.ari")}
-                            value={analysisResult.reading_level.ari}
+                            value={analysisResult.reading_level.automated_readability_index ?? 0}
                             precision={2}
                           />
                         </Card>
@@ -292,7 +295,13 @@ export default function AnalyzePage() {
                     </Row>
                     <div className="mt-4">
                       <Text strong>{t("analysis.average")}: </Text>
-                      <Text>{analysisResult.reading_level.average?.toFixed(2) ?? "N/A"}</Text>
+                      <Text>
+                        {(analysisResult.reading_level.flesch_kincaid_grade +
+                          analysisResult.reading_level.smog_index +
+                          analysisResult.reading_level.coleman_liau_index +
+                          analysisResult.reading_level.automated_readability_index) /
+                          4}
+                      </Text>
                     </div>
                   </div>
 
@@ -301,15 +310,17 @@ export default function AnalyzePage() {
                   {/* Character Frequency */}
                   <div className="mb-6">
                     <Title level={4}>{t("analysis.characterFrequency")}</Title>
-                    <div className="max-h-48 overflow-auto">
-                      {Object.entries(analysisResult.character_frequency)
+                    <div className="max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                      {Object.entries(analysisResult.character_analysis?.character_frequency || {})
                         .sort(([, a], [, b]) => b - a)
                         .slice(0, 20)
                         .map(([char, count]) => (
                           <div key={char} className="flex items-center justify-between py-1">
                             <Text code>{char === " " ? "Space" : char}</Text>
                             <Progress
-                              percent={Math.round((count / analysisResult.character_count) * 100)}
+                              percent={Math.round(
+                                (count / analysisResult.character_analysis.total_characters) * 100
+                              )}
                               size="small"
                               style={{ width: 150 }}
                             />
@@ -324,19 +335,26 @@ export default function AnalyzePage() {
                   {/* Word Density */}
                   <div>
                     <Title level={4}>{t("analysis.wordDensity")}</Title>
-                    <div className="max-h-48 overflow-auto">
-                      {Object.entries(analysisResult.word_density)
+                    <div className="max-h-48 overflow-y-auto pr-2 custom-scrollbar">
+                      {Object.entries(analysisResult.word_analysis?.word_frequency || {})
                         .sort(([, a], [, b]) => b - a)
                         .slice(0, 20)
                         .map(([word, count]) => (
                           <div key={word} className="flex items-center justify-between py-1">
                             <Text>{word}</Text>
                             <Progress
-                              percent={Math.round(count * 100)}
+                              percent={Math.round(
+                                (count / analysisResult.word_analysis.total_words) * 100
+                              )}
                               size="small"
                               style={{ width: 150 }}
                             />
-                            <Text>{(count * 100).toFixed(1)}%</Text>
+                            <Text>
+                              {((count / analysisResult.word_analysis.total_words) * 100).toFixed(
+                                1
+                              )}
+                              %
+                            </Text>
                           </div>
                         ))}
                     </div>
@@ -388,4 +406,14 @@ function getReadingLevelLabel(score: number, t: (key: string) => string): string
   if (score <= 80) return t("analysis.fairlyEasy");
   if (score <= 90) return t("analysis.easy");
   return t("analysis.veryEasy");
+}
+
+function getSentenceCount(text: string): number {
+  const sentences = text.split(/[.!?]+\s*(?=[A-Z]|$)/);
+  return sentences.filter((s) => s.trim().length > 0).length || 1;
+}
+
+function getParagraphCount(text: string): number {
+  const paragraphs = text.split(/\n\s*\n/);
+  return paragraphs.filter((p) => p.trim().length > 0).length || 1;
 }
